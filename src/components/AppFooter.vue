@@ -1,79 +1,62 @@
 <template>
-  <v-footer height="40" app>
-    <a
-      v-for="item in items"
-      :key="item.title"
-      :href="item.href"
-      :title="item.title"
-      class="d-inline-block mx-2 social-link"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <v-icon
-        :icon="item.icon"
-        :size="item.icon === '$vuetify' ? 24 : 16"
-      />
-    </a>
-
-    <div
-      class="text-caption text-disabled"
-      style="position: absolute; right: 16px;"
-    >
-      &copy; 2016-{{ (new Date()).getFullYear() }} <span class="d-none d-sm-inline-block">Vuetify, LLC</span>
-      —
-      <a
-        class="text-decoration-none on-surface"
-        href="https://vuetifyjs.com/about/licensing/"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        MIT License
-      </a>
-    </div>
+  <v-footer>
+    <v-card flat tile class="text-white py-12 px-5" width="100%">
+      <v-row>
+        <v-col cols="12" sm="6" md="4" class="pa-16">
+          <div class="text-center">
+            <strong>VuetifyCommerce</strong>
+          </div>
+          <v-card-title class="mt-2">
+            <div class="text-center">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consequatur consequuntur explicabo
+              fugit illum ipsum quia ratione reiciendis reprehenderit vel.
+            </div>
+          </v-card-title>
+        </v-col>
+        <v-col cols="12" sm="6" md="2">
+          <v-card-text class="pt-0">
+            <h3>About</h3>
+          </v-card-text>
+          <v-card-text class="text-gray">How it Work</v-card-text>
+          <v-card-text class="text-gray">Our Programs</v-card-text>
+          <v-card-text class="text-gray">Promotion</v-card-text>
+          <v-card-text class="text-gray">Refer a Friend</v-card-text>
+        </v-col>
+        <v-col cols="12" sm="6" md="2">
+          <v-card-text class="pt-0">
+            <h3>Dellvery</h3>
+          </v-card-text>
+          <v-card-text> Cost on Delevery</v-card-text>
+          <v-card-text class="mt-n4"> Payment Method</v-card-text>
+          <v-card-text class="mt-n4"> Delevery Astus</v-card-text>
+          <v-card-text class="mt-n4"> Returns</v-card-text>
+        </v-col>
+        <v-col cols="12" sm="6" md="4">
+          <v-card-text class="white--text pt-0">
+            <h3>Contact</h3>
+          </v-card-text>
+          <v-card-text> AAE IdeaPro</v-card-text>
+          <v-card-text class="mt-n4">
+            216 / C EAST Road
+          </v-card-text>
+          <v-card-text class="mt-n4"> aae.idapro.com</v-card-text>
+          <v-card-text class="mt-n4"> -B8254552214</v-card-text>
+        </v-col>
+      </v-row>
+    </v-card>
   </v-footer>
 </template>
 
 <script setup>
-  const items = [
-    {
-      title: 'Vuetify Documentation',
-      icon: `$vuetify`,
-      href: 'https://vuetifyjs.com/',
-    },
-    {
-      title: 'Vuetify Support',
-      icon: 'mdi-shield-star-outline',
-      href: 'https://support.vuetifyjs.com/',
-    },
-    {
-      title: 'Vuetify X',
-      icon: `svg:M2.04875 3.00002L9.77052 13.3248L1.99998 21.7192H3.74882L10.5519 14.3697L16.0486 21.7192H22L13.8437 10.8137L21.0765 3.00002H19.3277L13.0624 9.76874L8.0001 3.00002H2.04875ZM4.62054 4.28821H7.35461L19.4278 20.4308H16.6937L4.62054 4.28821Z`,
-      href: 'https://x.com/vuetifyjs',
-    },
-    {
-      title: 'Vuetify GitHub',
-      icon: `mdi-github`,
-      href: 'https://github.com/vuetifyjs/vuetify',
-    },
-    {
-      title: 'Vuetify Discord',
-      icon: `mdi-discord`,
-      href: 'https://community.vuetifyjs.com/',
-    },
-    {
-      title: 'Vuetify Reddit',
-      icon: `mdi-reddit`,
-      href: 'https://reddit.com/r/vuetifyjs',
-    },
-  ]
+
 </script>
 
 <style scoped lang="sass">
-  .social-link :deep(.v-icon)
-    color: rgba(var(--v-theme-on-background), var(--v-disabled-opacity))
-    text-decoration: none
-    transition: .2s ease-in-out
+.social-link :deep(.v-icon)
+  color: rgba(var(--v-theme-on-background), var(--v-disabled-opacity))
+  text-decoration: none
+  transition: .2s ease-in-out
 
-    &:hover
-      color: rgba(25, 118, 210, 1)
+  &:hover
+    color: rgba(25, 118, 210, 1)
 </style>

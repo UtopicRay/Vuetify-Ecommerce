@@ -46,10 +46,10 @@ let items = ref(
             <h2 class="text-white">{{ item.title }}</h2>
           </div>
           <div class="d-flex fill-height justify-center align-center">
-            <h2 class="text-white">{{ item.text }}</h2>
+            <p class="text-white text-center text-h6">{{ item.text }}</p>
           </div>
           <div class="d-flex fill-height justify-center align-center">
-            <v-btn style="margin-top:-120px ">Buy Now</v-btn>
+            <v-btn style="margin-top:-80px ">Buy Now</v-btn>
           </div>
         </v-col>
       </v-row>

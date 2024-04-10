@@ -1,5 +1,6 @@
 <script setup>
 import {ref} from "vue";
+import Card from "@/components/Card.vue";
 
 const clients = ref([
   {
@@ -24,13 +25,24 @@ const clients = ref([
 </script>
 
 <template>
-<v-row>
+<v-row style="background-color: #080A28">
   <v-col cols="3" sm="3">
-    <v-card class=""></v-card>
+    <v-card class="" style="background-color: #080A28">
+      <v-card-item>
+        <v-card-title class="text-center">Deals of today</v-card-title>
+      </v-card-item>
+      <v-card-text>
+        <div class="text-center">
+          <h1>08:32:39</h1>
+        </div>
+      </v-card-text>
+      </v-card>
+  </v-col>
+  <v-col cols="3" sm="3" v-for="(client,index) in clients" :key="index">
+    <Card :item="client"></Card>
   </v-col>
 </v-row>
 </template>
 
 <style scoped lang="sass">
-
 </style>
