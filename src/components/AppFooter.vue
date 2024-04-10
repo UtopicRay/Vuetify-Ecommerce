@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12" sm="6" md="4" class="pa-16">
           <div class="text-center">
-            <strong>VuetifyCommerce</strong>
+            <p class="font-weight-bold text-h6">VueCommerce</p>
           </div>
           <v-card-title class="mt-2">
             <div class="text-center">
