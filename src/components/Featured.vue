@@ -1,44 +1,35 @@
 <script setup>
-import {ref} from "vue";
+import { onMounted, ref } from "vue";
 import Card from "@/components/Card.vue";
+import { useFetchData } from "@/services/useFetchData";
 
-const features = ref(
-  [
-    {
-      img: "image/5.png",
-      title: "Appel Mac Book Pro",
-      price: "$ 93.358.01",
-      bio: " Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.",
-    },
-    {
-      img: "image/6.png",
-      title: "Appel Mac Book Pro",
-      price: "$ 93.358.01",
-      bio: " Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.",
-    },
-    {
-      img: "image/7.png",
-      title: "Appel Mac Book Pro",
-      price: "$ 93.358.01",
-      bio: " Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.",
-    },
-    {
-      img: "image/8.png",
-      title: "Appel Mac Book Pro",
-      price: "$ 93.358.01",
-      bio: " Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.",
-    },
-  ])
+const { product, error, isLoading, getShortedProduct } = useFetchData();
+const model =ref(null);
+onMounted(async () => {
+  await getShortedProduct();
+});
+if (error) {
+  console.log(error);
+}
 </script>
 
 <template>
-  <v-row>
-    <v-col cols="3" v-for="(feature,index) in features" :key="index">
-      <Card :item="feature"></Card>
-    </v-col>
-  </v-row>
+  <div v-if="isLoading">
+    <v-skeleton-loader :count="10" :type="`text`"></v-skeleton-loader>
+  </div>
+  <div v-else>
+    <v-toolbar color="transparent">
+      <v-toolbar-title> Featured Products</v-toolbar-title>
+    </v-toolbar>
+    <v-slide-group v-model="model" show-arrows>
+      <v-slide-group-item
+        v-for="(feature, index) in product.products"
+        :key="index"
+      >
+        <Card :item="feature" class="mr-4" :key="index"></Card>
+      </v-slide-group-item>
+    </v-slide-group>
+  </div>
 </template>
 
-<style scoped lang="sass">
-
-</style>
+<style scoped lang="sass"></style>

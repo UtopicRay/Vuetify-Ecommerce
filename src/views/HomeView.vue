@@ -13,22 +13,9 @@ import Client from "@/components/Client.vue";
       <v-col cols="12" sm="12">
         <Carousel/>
       </v-col>
-      <v-toolbar color="transparent">
-        <v-toolbar-title>Popular Products</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn icon="mdi mdi-chevron-left"></v-btn>
-        <v-btn icon="mdi mdi-chevron-right"></v-btn>
-      </v-toolbar>
       <v-col cols="12" sm="12">
         <Popular/>
       </v-col>
-      <v-toolbar color="transparent">
-        <v-toolbar-title> Featured Products</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-        <v-btn icon="mdi mdi-chevron-left"></v-btn>
-        <v-btn icon="mdi mdi-chevron-right"></v-btn>
-      </v-toolbar>
       <v-col cols="12" sm="12">
         <Featured/>
       </v-col>
@@ -41,7 +28,6 @@ import Client from "@/components/Client.vue";
           <Promotion color="red" img="../../public/image/14.jpg"/>
           <Promotion img="../../public/image/15.jpg"/>
         </v-row>
-
       </v-col>
     </v-row>
   </v-container>

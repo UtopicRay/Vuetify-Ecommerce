@@ -1,43 +1,35 @@
 <script setup>
-import {ref} from "vue";
 import Card from "@/components/Card.vue";
+import { useFetchData } from "@/services/useFetchData";
+import { onMounted, ref } from "vue";
 
-const populars = ref([
-  {
-    img: "image/1.png",
-    title: "Appel Mac Book Pro",
-    price: "$ 93.358.01",
-    bio: " Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.",
-  },
-  {
-    img: "image/2.png",
-    title: "Appel Mac Book Pro",
-    price: "$ 93.358.01",
-    bio: " Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.",
-  },
-  {
-    img: "image/3.png",
-    title: "Appel Mac Book Pro",
-    price: "$ 93.358.01",
-    bio: " Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.",
-  },
-  {
-    img: "image/4.png",
-    title: "Appel Mac Book Pro",
-    price: "$ 93.358.01",
-    bio: " Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.",
-  },
-])
+const { product, error, isLoading, getCategory } = useFetchData();
+const model = ref(null);
+onMounted(async () => {
+  await getCategory();
+});
+if (error) {
+  console.log(error);
+}
 </script>
-
 <template>
-  <v-row>
-    <v-col cols="3" sm="3" v-for="(popular,index) in populars" :key="index">
-      <Card :item="popular"></Card>
-    </v-col>
-  </v-row>
+  <div v-if="isLoading">...Loading</div>
+  <v-row v-else>
+    <v-toolbar color="transparent">
+      <v-toolbar-title>Popular Products</v-toolbar-title>
+    </v-toolbar>
+      <v-slide-group v-model="model" show-arrows>
+      <v-slide-group-item
+        v-for="(popular, index) in product.products"
+        :key="index"
+      >
+        <Card
+          :item="popular"
+          class="mr-4"
+        ></Card>
+      </v-slide-group-item>
+    </v-slide-group>
+  </v-row>    
 </template>
 
-<style scoped lang="sass">
-
-</style>
+<style scoped lang="sass"></style>

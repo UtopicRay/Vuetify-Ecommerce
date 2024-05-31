@@ -8,8 +8,11 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
     },
+    "types": [
+      "vue3-toastify/global",
+    ],
     "lib": [
       "esnext",
       "dom",

@@ -2,6 +2,7 @@ import HomeView from "@/views/HomeView.vue";
 import ProductsView from "@/views/ProductsView.vue";
 import ShopCartView from "@/views/ShopCartView.vue";
 import {createRouter, createWebHistory} from "vue-router";
+import ProductDetailView from "@/views/ProductDetailView.vue";
 
 const routes = [
   {
@@ -17,10 +18,14 @@ const routes = [
     path: "/shopCart",
     name: "shopCart",
     component: ShopCartView
+  }, {
+    path: '/products/:id',
+    name: "products-details",
+    component: ProductDetailView
   }
 ]
-const router=createRouter({
-  history:createWebHistory(process.env.BASE_URL),
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 export default router;
