@@ -1,130 +1,130 @@
 <script setup>
 import Loader from "@/components/Loader.vue";
+import MainLayout from "@/layout/MainLayout.vue";
 import { useFetchData } from "@/services/useFetchData";
-import {onMounted} from "vue";
+import { onMounted } from "vue";
 
-
-const {product, isLoading, error, getProductDetails} = useFetchData()
+const { product, isLoading, error, getProductDetails } = useFetchData();
 
 onMounted(async () => {
   await getProductDetails();
-})
+});
 if (error) {
   console.log(error);
 }
 </script>
 
 <template>
-  <div v-if="isLoading">
-    <Loader></Loader>
-  </div>
-  <v-card v-else class="card-wrapper d-flex justify-center align-center my-4">
-    <div class="card">
-      <div class="d-flex flex-column justify-center">
-        <div class="overflow-hidden">
-          <div class="img-showcase">
-            <img
-              :src="product.images[0]"
-              alt="shoe image">
-          </div>
-        </div>
-<div class="img-select">
-          <div class="img-item">
-            <a href="#" data-id="1">
-              <img
-                :src="product?.images[0]"
-                alt="shoe image">
-            </a>
-          </div>
-          <div class="img-item">
-            <a href="#" data-id="2">
-              <img
-                :src="product?.images[1]"
-                alt="shoe image">
-            </a>
-          </div>
-          <div class="img-item">
-            <a href="#" data-id="3">
-              <img
-                :src="product?.images[2]"
-                alt="shoe image">
-            </a>
-          </div>
-          <div class="img-item">
-            <a href="#" data-id="4">
-              <img
-                :src="product?.images[3]"
-                alt="shoe image">
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- card right -->
-      <div class="product-content">
-        <h2 class="product-title">{{ product.title }}</h2>
-        <a href="#" class="product-link">visit nike store</a>
-        <div class="d-flex align-center">
-          <v-rating :model-value="product.rating" color="amber" density="compact"
-                    half-increments></v-rating>
-          <div class="text-white ">{{product.rating }}</div>
-        </div>
-
-        <div class="product-price">
-          <p class="last-price">Old Price: <span>$257.00</span></p>
-          <p class="new-price">New Price: <span>$249.00 (5%)</span></p>
-        </div>
-
-        <div class="product-detail">
-          <h2>about this item: </h2>
-          <p>{{ product.description }}</p>
-          <ul>
-            <li>Color: <span>Black</span></li>
-            <li>Available: <span>in stock</span></li>
-            <li>Category: <span>Shoes</span></li>
-            <li>Shipping Area: <span>All over the world</span></li>
-            <li>Shipping Fee: <span>Free</span></li>
-          </ul>
-        </div>
-
-        <div class="purchase-info d-flex">
-          <input type="number" min="0" value="1">
-          <v-btn color="primary" class="rounded-xl px-5 mx-2" prepend-icon="mdi mdi-cart-outline">
-            Add to Cart
-          </v-btn>
-          <v-btn>Compare</v-btn>
-        </div>
-
-        <div class="social-links">
-          <p>Share At: </p>
-          <a href="#">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-pinterest"></i>
-          </a>
-        </div>
-      </div>
+  <MainLayout>
+    <div v-if="isLoading">
+      <Loader></Loader>
     </div>
-  </v-card>
+    <v-card v-else class="card-wrapper d-flex justify-center align-center my-4">
+      <div class="card">
+        <div class="d-flex flex-column justify-center">
+          <div class="overflow-hidden">
+            <div class="img-showcase">
+              <img :src="product.images[0]" alt="shoe image" />
+            </div>
+          </div>
+          <div class="img-select">
+            <div class="img-item">
+              <a href="#" data-id="1">
+                <img :src="product?.images[0]" alt="shoe image" />
+              </a>
+            </div>
+            <div class="img-item">
+              <a href="#" data-id="2">
+                <img :src="product?.images[1]" alt="shoe image" />
+              </a>
+            </div>
+            <div class="img-item">
+              <a href="#" data-id="3">
+                <img :src="product?.images[2]" alt="shoe image" />
+              </a>
+            </div>
+            <div class="img-item">
+              <a href="#" data-id="4">
+                <img :src="product?.images[3]" alt="shoe image" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- card right -->
+        <div class="product-content">
+          <h2 class="product-title">{{ product.title }}</h2>
+          <a href="#" class="product-link">visit nike store</a>
+          <div class="d-flex align-center">
+            <v-rating
+              :model-value="product.rating"
+              color="amber"
+              density="compact"
+              half-increments
+            ></v-rating>
+            <div class="text-white">{{ product.rating }}</div>
+          </div>
+
+          <div class="product-price">
+            <p class="last-price">Old Price: <span>$257.00</span></p>
+            <p class="new-price">New Price: <span>$249.00 (5%)</span></p>
+          </div>
+
+          <div class="product-detail">
+            <h2>about this item:</h2>
+            <p>{{ product.description }}</p>
+            <ul>
+              <li>Color: <span>Black</span></li>
+              <li>Available: <span>in stock</span></li>
+              <li>Category: <span>Shoes</span></li>
+              <li>Shipping Area: <span>All over the world</span></li>
+              <li>Shipping Fee: <span>Free</span></li>
+            </ul>
+          </div>
+
+          <div class="purchase-info d-flex">
+            <input type="number" min="0" value="1" />
+            <v-btn
+              color="primary"
+              class="rounded-xl px-5 mx-2"
+              prepend-icon="mdi mdi-cart-outline"
+            >
+              Add to Cart
+            </v-btn>
+            <v-btn>Compare</v-btn>
+          </div>
+
+          <div class="social-links">
+            <p>Share At:</p>
+            <a href="#">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-pinterest"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </v-card>
+  </MainLayout>
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
@@ -140,7 +140,6 @@ img {
   width: 100%;
   display: block;
 }
-
 
 .img-showcase {
   display: flex;
@@ -248,7 +247,8 @@ img {
 
 .product-detail ul li {
   list-style: none;
-  background: url(https://fadzrinmadu.github.io/hosted-assets/productStore.product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png) left center no-repeat;
+  background: url(https://fadzrinmadu.github.io/hosted-assets/productStore.product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png)
+    left center no-repeat;
   background-size: 18px;
   padding-left: 1.7rem;
   margin: 0.4rem 0;
@@ -316,7 +316,6 @@ img {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1.5rem;
   }
-
 
   .productStore.product-content {
     padding-top: 0;
