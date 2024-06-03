@@ -2,6 +2,7 @@
 import Card from "@/components/Card.vue";
 import { useFetchData } from "@/services/useFetchData";
 import { onMounted, ref } from "vue";
+import Loader from "./Loader.vue";
 
 const { product, error, isLoading, getCategory } = useFetchData();
 const model = ref(null);
@@ -13,7 +14,9 @@ if (error) {
 }
 </script>
 <template>
-  <div v-if="isLoading">...Loading</div>
+  <div v-if="isLoading" class="d-flex justify-center align-center">
+  <Loader></Loader>
+  </div>
   <v-row v-else>
     <v-toolbar color="transparent">
       <v-toolbar-title>Popular Products</v-toolbar-title>

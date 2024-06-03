@@ -2,6 +2,7 @@
 import { onMounted, ref } from "vue";
 import Card from "@/components/Card.vue";
 import { useFetchData } from "@/services/useFetchData";
+import Loader from "./Loader.vue";
 
 const { product, error, isLoading, getShortedProduct } = useFetchData();
 const model =ref(null);
@@ -15,7 +16,7 @@ if (error) {
 
 <template>
   <div v-if="isLoading">
-    <v-skeleton-loader :count="10" :type="`text`"></v-skeleton-loader>
+    <Loader></Loader>
   </div>
   <div v-else>
     <v-toolbar color="transparent">

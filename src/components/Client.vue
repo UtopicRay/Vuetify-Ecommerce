@@ -1,5 +1,6 @@
 <script setup>
 import Card from "@/components/Card.vue";
+import Loader from '@/components/Loader.vue';
 import { useFetchData } from "@/services/useFetchData";
 import { onMounted } from "vue";
 
@@ -13,7 +14,7 @@ if (error) {
 </script>
 
 <template>
-  <div v-if="isLoading">...Loading</div>
+  <div v-if="isLoading" class="d-flex justify-center align-center"><Loader></Loader></div>
   <v-row style="background-color: #080a28">
     <v-col cols="3" sm="3">
       <v-card class="" style="background-color: #080a28">

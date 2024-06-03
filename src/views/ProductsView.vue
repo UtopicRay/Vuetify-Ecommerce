@@ -1,6 +1,7 @@
 <script setup>
 import {onMounted} from "vue";
 import {useFetchData} from '@/services/useFetchData';
+import Loader from '@/components/Loader.vue';
 import Card from "@/components/Card.vue";
 
 const {product,error,isLoading,getProduct} = useFetchData();
@@ -13,8 +14,8 @@ if (error){
 </script>
 
 <template>
-  <div v-if="isLoading">
-    ...Loading
+  <div v-if="isLoading" class="d-flex justify-center align-center">
+   <Loader></Loader>
   </div>
   <v-row v-else>
     <v-col  v-for="item in product.products" cols="3" class="">
