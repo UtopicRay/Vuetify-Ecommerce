@@ -21,9 +21,9 @@ export function useFetchData() {
       });
   }
 
-  async function getProductDetails() {
+  async function getProductDetails(id) {
     await axios
-      .get("https://dummyjson.com/products/1")
+      .get(`https://dummyjson.com/products/${id}`)
       .then((response) => {
         product.value = response.data;
   

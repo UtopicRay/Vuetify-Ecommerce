@@ -3,11 +3,13 @@ import Loader from "@/components/Loader.vue";
 import MainLayout from "@/layout/MainLayout.vue";
 import { useFetchData } from "@/services/useFetchData";
 import { onMounted } from "vue";
+import { useRoute } from "vue-router";
 
 const { product, isLoading, error, getProductDetails } = useFetchData();
+const route = useRoute();
 
 onMounted(async () => {
-  await getProductDetails();
+  await getProductDetails(route.params.id);
 });
 if (error) {
   console.log(error);
@@ -19,36 +21,21 @@ if (error) {
     <div v-if="isLoading">
       <Loader></Loader>
     </div>
-    <v-card v-else class="card-wrapper d-flex justify-center align-center my-4">
-      <div class="card">
+    <v-container v-else class="d-flex justify-center align-center my-4">
+      <v-card class="card">
         <div class="d-flex flex-column justify-center">
           <div class="overflow-hidden">
             <div class="img-showcase">
-              <img :src="product.images[0]" alt="shoe image" />
+              <img :src="product.images[0]" width="400" height="600" />
             </div>
           </div>
-          <div class="img-select">
-            <div class="img-item">
+          <v-row v-show="product.images[1]">
+            <v-col cols="auto" v-for="(images, index) in product.images" :key="index">
               <a href="#" data-id="1">
-                <img :src="product?.images[0]" alt="shoe image" />
+                <img :src="images" :alt="product.title + ' images'" width="200" height="200"/>
               </a>
-            </div>
-            <div class="img-item">
-              <a href="#" data-id="2">
-                <img :src="product?.images[1]" alt="shoe image" />
-              </a>
-            </div>
-            <div class="img-item">
-              <a href="#" data-id="3">
-                <img :src="product?.images[2]" alt="shoe image" />
-              </a>
-            </div>
-            <div class="img-item">
-              <a href="#" data-id="4">
-                <img :src="product?.images[3]" alt="shoe image" />
-              </a>
-            </div>
-          </div>
+            </v-col>
+          </v-row>
         </div>
         <!-- card right -->
         <div class="product-content">
@@ -82,7 +69,6 @@ if (error) {
           </div>
 
           <div class="purchase-info d-flex">
-            <input type="number" min="0" value="1" />
             <v-btn
               color="primary"
               class="rounded-xl px-5 mx-2"
@@ -90,30 +76,23 @@ if (error) {
             >
               Add to Cart
             </v-btn>
-            <v-btn>Compare</v-btn>
           </div>
 
           <div class="social-links">
             <p>Share At:</p>
             <a href="#">
-              <i class="fab fa-facebook-f"></i>
+              <v-icon icon="mdi-facebook"></v-icon>
             </a>
             <a href="#">
-              <i class="fab fa-twitter"></i>
+              <v-icon icon="mdi-twitter"></v-icon>
             </a>
             <a href="#">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-pinterest"></i>
+              <i class="mdi-pinterest"></i>
             </a>
           </div>
         </div>
-      </div>
-    </v-card>
+      </v-card>
+    </v-container>
   </MainLayout>
 </template>
 
@@ -131,10 +110,6 @@ body {
   line-height: 1.5;
 }
 
-.card-wrapper {
-  max-width: 1100px;
-  margin: 0 auto;
-}
 
 img {
   width: 100%;
