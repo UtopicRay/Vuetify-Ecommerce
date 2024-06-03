@@ -23,9 +23,9 @@ export const useShopCartStore = defineStore("shopCartStore", () => {
         cantidad: 1,
         price: product.price,
       });
-      toast.success("Producto Añadido al Carrito");
       count.value = count.value + 1;
       price.value = price.value + product.price;
+      toast.success("Producto Añadido al Carrito");
     }
   }
   function updateCantidadProduct(product, order) {
@@ -34,7 +34,7 @@ export const useShopCartStore = defineStore("shopCartStore", () => {
         return;
       }
       product.cantidad = product.cantidad - 1;
-      price.value = price.value - product.price;
+      price.value=price.value-product.price;
       count.value = count.value - 1;
     } else {
       product.cantidad = product.cantidad + 1;
@@ -42,10 +42,11 @@ export const useShopCartStore = defineStore("shopCartStore", () => {
       count.value = count.value + 1;
     }
   }
-  function RemoveProduct(id) {
-    products.value = products.value.filter((product) => product.item.id != id);
-    toast.error("Producto eliminado del Carrito");
+  function RemoveProduct(product) {
     count.value = count.value - 1;
+    price.value = price.value-(product.price*product.cantidad);
+    products.value = products.value.filter((product1) => product1.item.id != product.item.id);
+    toast.error("Producto eliminado del Carrito");
   }
   return {
     count,
