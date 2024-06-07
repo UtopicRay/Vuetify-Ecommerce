@@ -2,10 +2,10 @@
 import Card from "@/components/Card.vue";
 import Loader from '@/components/Loader.vue';
 import { useFetchData } from "@/services/useFetchData";
-import { onMounted } from "vue";
+import {onBeforeMount} from "vue";
 
 const { product, error, isLoading, getShortedProduct } = useFetchData();
-onMounted(async () => {
+onBeforeMount(async () => {
   await getShortedProduct('discountPercentage',3);
 });
 if (error) {

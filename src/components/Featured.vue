@@ -1,12 +1,12 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import {onBeforeMount, ref} from "vue";
 import Card from "@/components/Card.vue";
 import { useFetchData } from "@/services/useFetchData";
 import Loader from "./Loader.vue";
 
 const { product, error, isLoading, getShortedProduct } = useFetchData();
 const model =ref(null);
-onMounted(async () => {
+onBeforeMount(async () => {
   await getShortedProduct();
 });
 if (error) {

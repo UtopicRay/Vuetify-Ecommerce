@@ -1,12 +1,12 @@
 <script setup>
-import { onMounted } from "vue";
+import {onBeforeMount, onMounted} from "vue";
 import { useFetchData } from "@/services/useFetchData";
 import Loader from "@/components/Loader.vue";
 import Card from "@/components/Card.vue";
 import MainLayout from "@/layout/MainLayout.vue";
 
 const { product, error, isLoading, getProduct } = useFetchData();
-onMounted(async () => {
+onBeforeMount(async () => {
   await getProduct();
 });
 if (error) {

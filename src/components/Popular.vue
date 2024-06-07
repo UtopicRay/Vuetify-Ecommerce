@@ -1,12 +1,12 @@
 <script setup>
 import Card from "@/components/Card.vue";
 import { useFetchData } from "@/services/useFetchData";
-import { onMounted, ref } from "vue";
+import {onBeforeMount, ref} from "vue";
 import Loader from "./Loader.vue";
 
 const { product, error, isLoading, getCategory } = useFetchData();
 const model = ref(null);
-onMounted(async () => {
+onBeforeMount(async () => {
   await getCategory();
 });
 if (error) {
@@ -32,7 +32,7 @@ if (error) {
         ></Card>
       </v-slide-group-item>
     </v-slide-group>
-  </v-row>    
+  </v-row>
 </template>
 
 <style scoped lang="sass"></style>
