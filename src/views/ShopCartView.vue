@@ -70,8 +70,10 @@ const shopCart = useShopCartStore();
             </div>
           </v-card-text>
           <v-card-actions>
-            <v-btn class="mx-auto">Ir al Proceso de Compra</v-btn>
-          </v-card-actions>
+            <router-link :to="{name:'payment'}" class="mx-auto">
+              <v-btn color="primary">Ir al Proceso de Compra</v-btn>
+            </router-link>
+            </v-card-actions>
         </v-card>
       </v-col>
     </v-row>

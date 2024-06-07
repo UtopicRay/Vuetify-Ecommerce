@@ -1,16 +1,23 @@
 <script setup>
 import Loader from "@/components/Loader.vue";
 import MainLayout from "@/layout/MainLayout.vue";
-import { useFetchData } from "@/services/useFetchData";
-import { onMounted } from "vue";
-import { useRoute } from "vue-router";
+import {useFetchData} from "@/services/useFetchData";
+import {onBeforeMount, ref} from "vue";
+import {useRoute} from "vue-router";
 
-const { product, isLoading, error, getProductDetails } = useFetchData();
+const {product, isLoading, error, getProductDetails} = useFetchData();
 const route = useRoute();
+const IndexImage = ref(0);
 
-onMounted(async () => {
-  await getProductDetails(route.params.id);
-});
+onBeforeMount(async () => {
+    await getProductDetails(route.params.id);
+  }
+)
+
+function handleIndexImage(x) {
+  IndexImage.value = x;
+}
+
 if (error) {
   console.log(error);
 }
@@ -21,76 +28,90 @@ if (error) {
     <div v-if="isLoading">
       <Loader></Loader>
     </div>
-    <v-container v-else class="d-flex justify-center align-center my-4">
+    <v-container v-else class="d-flex justify-center align-center my-4 mx-auto">
       <v-card class="card">
-        <div class="d-flex flex-column justify-center">
-          <div class="overflow-hidden">
-            <div class="img-showcase">
-              <img :src="product.images[0]" width="400" height="600" />
+        <v-toolbar color="transparent">
+          <v-toolbar-title>
+            <router-link :to="{name:'products'}">
+              <v-btn icon="mdi mdi-chevron-left" class="bg-shades-white"/>
+            </router-link>
+             Go to Products List
+          </v-toolbar-title>
+        </v-toolbar>
+        <v-row>
+          <v-col>
+            <div class="d-flex flex-column justify-center">
+              <div class="overflow-hidden">
+                <div class="img-showcase">
+                  <img :src="product.images[IndexImage]" height="600"/>
+                </div>
+              </div>
+              <v-row v-show="product.images[1]" class="mx-auto">
+                <v-col cols="auto" v-for="(images, index) in product.images" :key="index">
+                  <a href="#" data-id="1" @click="handleIndexImage(index)">
+                    <img :src="images" :alt="product.title + ' images'" width="200" height="200"/>
+                  </a>
+                </v-col>
+              </v-row>
             </div>
-          </div>
-          <v-row v-show="product.images[1]">
-            <v-col cols="auto" v-for="(images, index) in product.images" :key="index">
-              <a href="#" data-id="1">
-                <img :src="images" :alt="product.title + ' images'" width="200" height="200"/>
-              </a>
-            </v-col>
-          </v-row>
-        </div>
-        <!-- card right -->
-        <div class="product-content">
-          <h2 class="product-title">{{ product.title }}</h2>
-          <a href="#" class="product-link">visit nike store</a>
-          <div class="d-flex align-center">
-            <v-rating
-              :model-value="product.rating"
-              color="amber"
-              density="compact"
-              half-increments
-            ></v-rating>
-            <div class="text-white">{{ product.rating }}</div>
-          </div>
+          </v-col>
+          <!-- card right -->
 
-          <div class="product-price">
-            <p class="last-price">Old Price: <span>$257.00</span></p>
-            <p class="new-price">New Price: <span>$249.00 (5%)</span></p>
-          </div>
+          <v-col>
+            <div class="product-content">
+              <h2 class="product-title">{{ product.title }}</h2>
+              <div class="d-flex align-center">
+                <v-rating
+                  :model-value="product.rating"
+                  color="amber"
+                  density="compact"
+                  half-increments
+                ></v-rating>
+                <div class="text-white">{{ product.rating }}</div>
+              </div>
 
-          <div class="product-detail">
-            <h2>about this item:</h2>
-            <p>{{ product.description }}</p>
-            <ul>
-              <li>Color: <span>Black</span></li>
-              <li>Available: <span>in stock</span></li>
-              <li>Category: <span>Shoes</span></li>
-              <li>Shipping Area: <span>All over the world</span></li>
-              <li>Shipping Fee: <span>Free</span></li>
-            </ul>
-          </div>
+              <div class="product-price">
+                <p class="last-price">Old Price: <span>$257.00</span></p>
+                <p class="new-price">New Price: <span>$249.00 (5%)</span></p>
+              </div>
 
-          <div class="purchase-info d-flex">
-            <v-btn
-              color="primary"
-              class="rounded-xl px-5 mx-2"
-              prepend-icon="mdi mdi-cart-outline"
-            >
-              Add to Cart
-            </v-btn>
-          </div>
+              <div class="product-detail">
+                <h2>about this item:</h2>
+                <p>{{ product.description }}</p>
+                <ul>
+                  <li>Color: <span>Black</span></li>
+                  <li>Available: <span>in stock</span></li>
+                  <li>Category: <span>Shoes</span></li>
+                  <li>Shipping Area: <span>All over the world</span></li>
+                  <li>Shipping Fee: <span>Free</span></li>
+                </ul>
+              </div>
 
-          <div class="social-links">
-            <p>Share At:</p>
-            <a href="#">
-              <v-icon icon="mdi-facebook"></v-icon>
-            </a>
-            <a href="#">
-              <v-icon icon="mdi-twitter"></v-icon>
-            </a>
-            <a href="#">
-              <i class="mdi-pinterest"></i>
-            </a>
-          </div>
-        </div>
+              <div class="purchase-info d-flex">
+                <v-btn
+                  color="primary"
+                  class="rounded-xl px-5 mx-2"
+                  prepend-icon="mdi mdi-cart-outline"
+                >
+                  Add to Cart
+                </v-btn>
+              </div>
+
+              <div class="social-links">
+                <p>Share At:</p>
+                <a href="#">
+                  <v-icon icon="mdi-facebook"></v-icon>
+                </a>
+                <a href="#">
+                  <v-icon icon="mdi-twitter"></v-icon>
+                </a>
+                <a href="#">
+                  <i class="mdi-pinterest"></i>
+                </a>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
       </v-card>
     </v-container>
   </MainLayout>
@@ -126,24 +147,6 @@ img {
   min-width: 100%;
 }
 
-.img-select {
-  display: flex;
-}
-
-.img-item {
-  margin: 0.3rem;
-}
-
-.img-item:nth-child(1),
-.img-item:nth-child(2),
-.img-item:nth-child(3) {
-  margin-right: 0;
-}
-
-.img-item:hover {
-  opacity: 0.8;
-}
-
 .product-content {
   padding: 2rem 1rem;
 }
@@ -153,7 +156,7 @@ img {
   text-transform: capitalize;
   font-weight: 700;
   position: relative;
-  color: #12263a;
+  color: deepskyblue;
   margin: 1rem 0;
 }
 
@@ -164,24 +167,7 @@ img {
   bottom: 0;
   height: 4px;
   width: 80px;
-  background: #12263a;
-}
-
-.product-link {
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 0.9rem;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  background: #256eff;
-  color: #fff;
-  padding: 0 0.3rem;
-  transition: all 0.5s ease;
-}
-
-.product-link:hover {
-  opacity: 0.9;
+  background: deepskyblue;
 }
 
 .product-price {
@@ -205,7 +191,7 @@ img {
 
 .product-detail h2 {
   text-transform: capitalize;
-  color: #12263a;
+  color: deepskyblue;
   padding-bottom: 0.6rem;
 }
 
@@ -222,8 +208,7 @@ img {
 
 .product-detail ul li {
   list-style: none;
-  background: url(https://fadzrinmadu.github.io/hosted-assets/productStore.product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png)
-    left center no-repeat;
+  background: url(https://fadzrinmadu.github.io/hosted-assets/productStore.product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png) left center no-repeat;
   background-size: 18px;
   padding-left: 1.7rem;
   margin: 0.4rem 0;
@@ -285,15 +270,4 @@ img {
   color: #fff;
 }
 
-@media screen and (min-width: 992px) {
-  .card {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1.5rem;
-  }
-
-  .productStore.product-content {
-    padding-top: 0;
-  }
-}
 </style>
