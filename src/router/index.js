@@ -1,7 +1,6 @@
 import HomeView from "@/views/HomeView.vue";
 import ProductsView from "@/views/ProductsView.vue";
 import ShopCartView from "@/views/ShopCartView.vue";
-import PaymentView from "@/views/PaymentView.vue";
 import {createRouter, createWebHistory} from "vue-router";
 import ProductDetailView from "@/views/ProductDetailView.vue";
 
@@ -23,10 +22,6 @@ const routes = [
     path: '/products/:id',
     name: "products-details",
     component: ProductDetailView
-  },{
-    path:'/payment',
-    name:"payment",
-    component:PaymentView
   }
 ]
 const router = createRouter({
