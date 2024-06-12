@@ -35,12 +35,11 @@
           <v-card-text class="white--text pt-0">
             <h3>Contact</h3>
           </v-card-text>
-          <v-card-text> AAE IdeaPro</v-card-text>
+          <v-card-text> Ray Rendon</v-card-text>
           <v-card-text class="mt-n4">
-            216 / C EAST Road
+            rayrm2021@gmail.com
           </v-card-text>
-          <v-card-text class="mt-n4"> aae.idapro.com</v-card-text>
-          <v-card-text class="mt-n4"> -B8254552214</v-card-text>
+          <v-card-text class="mt-n4"> +5358294125</v-card-text>
         </v-col>
       </v-row>
     </v-card>
