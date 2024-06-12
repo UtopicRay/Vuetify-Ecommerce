@@ -26,7 +26,7 @@ export function useFetchData() {
       .get(`https://dummyjson.com/products/${id}`)
       .then((response) => {
         product.value = response.data;
-  
+
       })
       .catch((Error) => {
         error.value = Error.message;
@@ -61,6 +61,12 @@ export function useFetchData() {
       })
       .finally(() => (isLoading.value = false));
   }
+  async function SearchProduct(name){
+    await axios.get(`https://dummyjson.com/products/search?q=${name}`)
+      .then((response) =>  product.value = response.data)
+      .catch((error) => error.value = error.message)
+      .finally(() => isLoading.value = false);
+  }
   return {
     getProduct,
     product,
@@ -68,6 +74,7 @@ export function useFetchData() {
     error,
     isLoading,
     getCategory,
-    getShortedProduct
+    getShortedProduct,
+    SearchProduct
   };
 }

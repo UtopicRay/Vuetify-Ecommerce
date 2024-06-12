@@ -6,7 +6,7 @@ const shopCart=useShopCartStore();
 </script>
 
 <template>
-  <v-card class="mx-auto my-12 pb-4" max-width="380">
+  <v-card class="mx-auto my-5 pb-4" max-width="380">
     <v-img class="mx-4 mt-3" height="280" :src="props.item?.images[0]"></v-img>
     <v-card-item>
       <v-card-title>{{ props.item.title }}</v-card-title>
