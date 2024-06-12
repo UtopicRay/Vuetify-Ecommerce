@@ -38,9 +38,9 @@ const shopCart = useShopCartStore();
       </div>
       <p class="mt-2 text-h3">Where is no products in the cart</p>
     </div>
-    <v-row v-else>
-      <v-col class="mx-4" cols="8">
-        <v-list class="px-2 my-2">
+    <v-row v-else class="pa-4">
+      <v-col class="" cols="12" md="8">
+        <v-list class="my-2">
           <v-toolbar color="transparent" class="mx-4">Shop Cart</v-toolbar>
           <v-list-item v-for="(item, index) in shopCart.products" :key="index">
             <ShopCartItem :item="item" class="ml-4"></ShopCartItem>
@@ -48,7 +48,7 @@ const shopCart = useShopCartStore();
         </v-list>
       </v-col>
       <v-col>
-        <v-card class="mx-4 my-2" cols="auto">
+        <v-card class=" my-2" cols="auto">
           <v-card-title>Order summary</v-card-title>
           <v-divider></v-divider>
           <v-card-text>

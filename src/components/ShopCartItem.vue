@@ -9,7 +9,7 @@ const props = defineProps({ item: Array});
       <v-col cols="auto">
         <v-img :src="props.item.item.images[0]" width="200" height="200"></v-img>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="auto" md="6">
         <v-card-title>{{ props.item.item.title }}</v-card-title>
         <v-card-text>
           <p>{{ props.item.item.description }}</p>
