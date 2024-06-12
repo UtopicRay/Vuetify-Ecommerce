@@ -48,9 +48,6 @@ let items = ref(
           <div class="d-flex fill-height justify-center align-center">
             <p class="text-white text-center text-h6">{{ item.text }}</p>
           </div>
-          <div class="d-flex fill-height justify-center align-center">
-            <v-btn style="margin-top:-80px ">Buy Now</v-btn>
-          </div>
         </v-col>
       </v-row>
     </v-carousel-item>

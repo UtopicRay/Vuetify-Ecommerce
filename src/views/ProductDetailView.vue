@@ -4,9 +4,11 @@ import MainLayout from "@/layout/MainLayout.vue";
 import {useFetchData} from "@/services/useFetchData";
 import {onBeforeMount, ref} from "vue";
 import {useRoute} from "vue-router";
+import {useShopCartStore} from "@/store/ShopCartStore";
 
 const {product, isLoading, error, getProductDetails} = useFetchData();
 const route = useRoute();
+const store=useShopCartStore()
 const IndexImage = ref(0);
 
 onBeforeMount(async () => {
@@ -92,6 +94,7 @@ if (error) {
                   color="primary"
                   class="rounded-xl px-5 mx-2"
                   prepend-icon="mdi mdi-cart-outline"
+                  @click="store.addProduct(product)"
                 >
                   Add to Cart
                 </v-btn>

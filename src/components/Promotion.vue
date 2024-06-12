@@ -1,24 +1,38 @@
 <script setup>
-const props=defineProps({color:String,img:String})
-</script>
+import {useFetchData} from "@/services/useFetchData";
+import {onBeforeMount} from "vue";
+import Loader from "@/components/Loader.vue";
+import {useShopCartStore} from "@/store/ShopCartStore";
 
+const props=defineProps({color:String,id:Number})
+const {product,error,isLoading,getProductDetails}=useFetchData();
+const store=useShopCartStore();
+onBeforeMount(async ()=>{
+ await getProductDetails(props.id)
+})
+if (error){
+  console.log(error);
+}
+</script>
 <template>
-  <v-col cols="3" sm="4">
-    <v-card class="mx-auto my-12 pb-4" max-width="374" :color="props.color">
+<div v-if="isLoading">
+  <Loader/>
+</div>
+  <v-col cols="3" sm="4" v-else>
+    <v-card class="mx-auto my-12 pb-4" height="300" :color="props.color">
       <v-row>
         <v-col cols="12" sm="6">
           <v-card-item class="mt-10">
             <v-card-title class="text-center"
-            >Smart watch</v-card-title
-            >
+            >{{product.title}}</v-card-title>
           </v-card-item>
 
           <v-card-text>
             <div class="text-center">
-              Small plates, salads & sandwiches
+              {{product.description}}
             </div>
             <div class="text-center mt-4">
-              <v-btn color="black">Buy Now</v-btn>
+              <v-btn color="black" @click="store.addProduct(product)">Buy Now</v-btn>
             </div>
           </v-card-text>
         </v-col>
@@ -26,7 +40,7 @@ const props=defineProps({color:String,img:String})
           <v-img
             height="250"
             class="mx-4"
-            :src="props.img"
+            :src="product?.images[0]"
           ></v-img>
         </v-col>
       </v-row>

@@ -6,12 +6,6 @@
           <div class="text-center">
             <p class="font-weight-bold text-h6">VueCommerce</p>
           </div>
-          <v-card-title class="mt-2">
-            <div class="text-center">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consequatur consequuntur explicabo
-              fugit illum ipsum quia ratione reiciendis reprehenderit vel.
-            </div>
-          </v-card-title>
         </v-col>
         <v-col cols="12" sm="6" md="2">
           <v-card-text class="pt-0">

@@ -25,9 +25,9 @@ import MainLayout from "@/layout/MainLayout.vue";
         </v-col>
         <v-col cols="12" sm="12">
           <v-row>
-            <Promotion img="../../public/image/13.jpg" />
-            <Promotion color="red" img="../../public/image/14.jpg" />
-            <Promotion img="../../public/image/15.jpg" />
+            <Promotion id="181"/>
+            <Promotion color="red" id="180"  />
+            <Promotion id="155" />
           </v-row>
         </v-col>
       </v-row>
