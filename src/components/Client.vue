@@ -16,19 +16,12 @@ if (error) {
 <template>
   <div v-if="isLoading" class="d-flex justify-center align-center"><Loader></Loader></div>
   <v-row style="background-color: #080a28">
-    <v-col cols="3" sm="3">
-      <v-card class="" style="background-color: #080a28">
-        <v-card-item>
-          <v-card-title class="text-center">Deals of today</v-card-title>
-        </v-card-item>
-        <v-card-text>
-          <div class="text-center">
-            <h1>08:32:39</h1>
-          </div>
-        </v-card-text>
-      </v-card>
+    <v-col cols="12" md="3">
+      <v-toolbar  style="background-color: #080a28">
+          <v-toolbar-title class="text-center">Deals of today</v-toolbar-title>
+      </v-toolbar>
     </v-col>
-    <v-col cols="3" sm="3" v-for="(client, index) in product.products" :key="index">
+    <v-col cols="12" md="3" v-for="(client, index) in product.products" :key="index">
       <Card :item="client"></Card>
     </v-col>
   </v-row>

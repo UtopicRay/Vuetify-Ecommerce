@@ -18,11 +18,12 @@ if (error){
 <div v-if="isLoading">
   <Loader/>
 </div>
-  <v-col cols="3" sm="4" v-else>
-    <v-card class="mx-auto my-12 pb-4" height="300" :color="props.color">
+  <v-col cols="8" lg="4" class="mx-auto" v-else>
+    <v-card class="mx-auto my-12 pb-4"  :color="props.color">
       <v-row>
         <v-col cols="12" sm="6">
-          <v-card-item class="mt-10">
+          <v-card-item class="mt-
+10">
             <v-card-title class="text-center"
             >{{product.title}}</v-card-title>
           </v-card-item>
