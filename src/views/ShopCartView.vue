@@ -2,6 +2,7 @@
 import { useShopCartStore } from "@/store/ShopCartStore";
 import ShopCartItem from "@/components/ShopCartItem";
 import MainLayout from "@/layout/MainLayout.vue";
+import Popup from "@/components/Popup.vue";
 const shopCart = useShopCartStore();
 </script>
 
@@ -40,7 +41,7 @@ const shopCart = useShopCartStore();
     <v-row v-else>
       <v-col class="mx-4" cols="8">
         <v-list class="px-2 my-2">
-          <v-toolbar color="transparent" class="mx-4">Carrito</v-toolbar>
+          <v-toolbar color="transparent" class="mx-4">Shop Cart</v-toolbar>
           <v-list-item v-for="(item, index) in shopCart.products" :key="index">
             <ShopCartItem :item="item" class="ml-4"></ShopCartItem>
           </v-list-item>
@@ -48,36 +49,34 @@ const shopCart = useShopCartStore();
       </v-col>
       <v-col>
         <v-card class="mx-4 my-2" cols="auto">
-          <v-card-title>Resumen del pedido</v-card-title>
+          <v-card-title>Order summary</v-card-title>
           <v-divider></v-divider>
           <v-card-text>
             <div class="d-flex my-2">
-              <h3>Total productos</h3>
+              <h3>Order amounts</h3>
               <v-spacer></v-spacer>
               <p>{{ shopCart.price }}</p>
             </div>
             <v-divider></v-divider>
             <div class="d-flex my-2">
-              <h3>Total del Envio</h3>
+              <h3>Shipping amount</h3>
               <v-spacer></v-spacer>
               <p>0</p>
             </div>
             <v-divider></v-divider>
             <div class="d-flex mt-3">
-              <h2>Importe total</h2>
+              <h2>Total amount</h2>
               <v-spacer></v-spacer>
               <p>{{ shopCart.price }}</p>
             </div>
           </v-card-text>
           <v-card-actions>
-            <router-link :to="{name:'payment'}" class="mx-auto">
-              <v-btn color="primary">Ir al Proceso de Compra</v-btn>
-            </router-link>
+             <Popup></Popup>
             </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
-    <Featured></Featured>
+    <Featured/>
   </MainLayout>
 </template>
 

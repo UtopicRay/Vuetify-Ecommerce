@@ -16,7 +16,7 @@ export const useShopCartStore = defineStore("shopCartStore", () => {
       aux.price=aux.price+product.price;
       count.value = count.value + 1;
       price.value=price.value+product.price;
-      toast.success("Producto Añadido al Carrito");
+      toast.success("Product add from cart");
     } else {
       products.value.push({
         item: { ...product },
@@ -25,7 +25,7 @@ export const useShopCartStore = defineStore("shopCartStore", () => {
       });
       count.value = count.value + 1;
       price.value = price.value + product.price;
-      toast.success("Producto Añadido al Carrito");
+      toast.success("Product add from cart");
     }
   }
   function updateCantidadProduct(product, order) {
@@ -46,8 +46,15 @@ export const useShopCartStore = defineStore("shopCartStore", () => {
     count.value = count.value - 1;
     price.value = price.value-(product.price*product.cantidad);
     products.value = products.value.filter((product1) => product1.item.id != product.item.id);
-    toast.error("Producto eliminado del Carrito");
+    toast.error("Product removed from cart");
   }
+  function ClearShopCart(){
+    count.value=0;
+    price.value=.0;
+    products.value=[];
+    toast.success("Shopping cart emptied");
+  }
+
   return {
     count,
     products,
@@ -55,5 +62,6 @@ export const useShopCartStore = defineStore("shopCartStore", () => {
     RemoveProduct,
     price,
     updateCantidadProduct,
+    ClearShopCart,
   };
 });
