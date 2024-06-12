@@ -37,9 +37,11 @@
           </v-card-text>
           <v-card-text> Ray Rendon</v-card-text>
           <v-card-text class="mt-n4">
-            rayrm2021@gmail.com
+            <a href="mailto:rayrm2021@gmail.com?subject=Interesado%20en%20sus%20servicios">
+              rayrm2021@gmail.com
+            </a>
           </v-card-text>
-          <v-card-text class="mt-n4"> +5358294125</v-card-text>
+          <v-card-text class="mt-n4"><a href="https://wa.me/+5358294125">+5358294125</a></v-card-text>
         </v-col>
       </v-row>
     </v-card>
