@@ -21,7 +21,7 @@ const props = defineProps({ item: Array});
             <p>Cant: {{ props.item.cantidad }}</p>
             <v-btn icon="mdi-plus" density="compact" @click="shopCart.updateCantidadProduct(props.item,'more')" variant="elevated"/>
           </div>
-          <v-btn color="red" variant="elevated" @click="shopCart.RemoveProduct(props.item)"> Eliminar</v-btn>
+          <v-btn color="red" variant="elevated" @click="shopCart.RemoveProduct(props.item)"> Remove</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>
