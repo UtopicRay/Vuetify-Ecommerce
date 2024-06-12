@@ -15,12 +15,9 @@ watch(group, () => {
     <template v-slot:prepend>
       <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-app-bar-title>
-      <router-link class="text-white" :to="{name:'home'}">VueCommerce</router-link>  
+      <router-link class="text-white" :to="{name:'home'}">VueCommerce</router-link>
       </v-app-bar-title>
     </template>
-    <v-spacer></v-spacer>
-    <v-text-field density="compact" variant="solo" label="buscar producto" append-inner-icon="mdi-magnify" single-line
-                  hide-details flat></v-text-field>
     <v-spacer></v-spacer>
     <router-link class="text-white" :to="{name:'shopCart'}">
       <v-btn class="text-none" stacked>
@@ -30,7 +27,7 @@ watch(group, () => {
       <v-icon v-show="shopCart.count===0">mdi mdi-cart-outline</v-icon>
     </v-btn>
     </router-link>
-    
+
   </v-app-bar>
   <v-navigation-drawer
     v-model="drawer"
